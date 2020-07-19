@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Install Json server for mock api 
+Install Json server for mock api 
 
-### 'npm install -g json-server'
+### `npm install -g json-server`
 
 ## Available Scripts
 
