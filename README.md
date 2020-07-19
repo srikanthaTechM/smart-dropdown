@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Install Json server for mock api 
 
-npm install -g json-server 
+### 'npm install -g json-server'
 
 ## Available Scripts
 
