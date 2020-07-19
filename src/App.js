@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import SearchComponent from './SearchComponent';
 
-function App() {
+const App = () => {
+  const url = 'http://localhost:3001/countries';
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(url).then(async res => {
+      if (res.status !== 200) {
+        setData('uh oh error!');
+      }
+      const data = await res.json();
+      setData(data);
+    });
+  }, []);
+  function onSelect(value) {
+    console.log(value);
+  }
+  function updateData(value) {
+    const newItem = {name: value, value}
+    setData(prevState => [...prevState, newItem]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <SearchComponent
+        data={data || []}
+        dispalyKey="name"
+        addPrivilege={true}
+        defaultValue="Select a location"
+        maxList={5}
+        selectHandler={onSelect}
+        addItemsToList={updateData}
+      />
     </div>
   );
 }
